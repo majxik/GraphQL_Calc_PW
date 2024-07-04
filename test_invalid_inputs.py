@@ -1,0 +1,20 @@
+from playwright.sync_api import sync_playwright
+from calculator_page import CalculatorPage
+
+#Author: Martin Maiksnar
+
+def test_invalid_input_with_text(calc_page):
+    calc_page.fill_first_number('aaa')
+    calc_page.fill_second_number(1)
+    calc_page.click_add()
+    result = calc_page.get_result()
+    print("The result is:", result)
+    assert result == "Result: Error"
+
+def test_invalid_input_with_blank(calc_page):
+    calc_page.fill_first_number(1)
+    calc_page.fill_second_number('')
+    calc_page.click_add()
+    result = calc_page.get_result()
+    print("The result is:", result)
+    assert result == "Result: Error"
