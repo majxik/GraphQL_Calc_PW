@@ -9,5 +9,6 @@ def test_all_clear(calc_page):
     calc_page.click_add()
     calc_page.click_ac()
     result = calc_page.get_result()
-    print("The result is:", result)
+    assert calc_page.get_first_number() == "0"
+    assert calc_page.get_second_number() == "0"
     assert result == "Result: No result yet"
