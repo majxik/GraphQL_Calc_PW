@@ -1,13 +1,10 @@
 import pytest
 from playwright.sync_api import sync_playwright
-from calculator_page import CalculatorPage
-from query_page import QueryPage
+from page_objects.calculator_page import CalculatorPage
+from page_objects.query_page import QueryPage
 
 #Author: Martin Maiksnar
 #This is a fixture for the calculator page & query page
-
-import pytest
-from playwright.sync_api import sync_playwright
 
 # Generic fixture to manage browser context
 @pytest.fixture(scope="function")

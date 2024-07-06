@@ -1,7 +1,11 @@
+import sys
+sys.path.append('C:/development/Ataccama/calculator-test-automation/graphql_calc_pw')
+
 from playwright.sync_api import sync_playwright
-from calculator_page import CalculatorPage
+from page_objects.calculator_page import CalculatorPage
 
 #Author: Martin Maiksnar
+#Test for the AC button
 
 def test_all_clear(calc_page):
     calc_page.fill_first_number(5)

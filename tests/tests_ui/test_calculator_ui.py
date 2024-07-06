@@ -1,7 +1,10 @@
+import sys
+sys.path.append('C:/development/Ataccama/calculator-test-automation/graphql_calc_pw')
 from playwright.sync_api import sync_playwright
-from calculator_page import CalculatorPage
+from page_objects.calculator_page import CalculatorPage
 
 #Author: Martin Maiksnar
+#Test for the calculator UI default state
 
 def test_calculator_ui(calc_page):
     assert calc_page.is_button_present("add") == True, "Add button should be present"

@@ -1,8 +1,10 @@
+import sys
+sys.path.append('C:/development/Ataccama/calculator-test-automation/graphql_calc_pw')
 import pytest
 from playwright.sync_api import sync_playwright
-from query_page import QueryPage
-
+from page_objects.query_page import QueryPage
 #Author: Martin Maiksnar
+#Basic Performance Testing for GraphQL API
 
 def test_success_query_performance(query_page):
     query = "query { add(x: 10, y: 5) }"

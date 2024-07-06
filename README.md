@@ -2,6 +2,8 @@
 GraphQL Calculator Test Automation written with Playwright & PyTest
 @author: Martin Maiksnar
 
+This project is for demonstration of basic test automation skills on GraphQL Calculator running in local docker. 
+
 Prerequisites:
 calculator-frontend running on 3001
 calculator-frontend running on 4000
