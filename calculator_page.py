@@ -2,53 +2,51 @@
 #This is the page object for the calculator page
 
 class CalculatorPage:
+    FIRST_NUMBER_INPUT = 'input[type="text"]:nth-of-type(1)'
+    SECOND_NUMBER_INPUT = 'input[type="text"]:nth-of-type(2)'
+    RESULT_SELECTOR = 'h3'
+    BUTTON_TEXTS = {
+        "add": "Add",
+        "subtract": "Subtract",
+        "multiply": "Multiply",
+        "divide": "Divide",
+        "ac": "AC"
+    }
+
     def __init__(self, page):
         self.page = page
 
     def open(self):
         self.page.goto("http://localhost:3001/")
 
+    def fill_number(self, number, input_selector):
+        self.page.fill(input_selector, str(number))
+
+    def get_input_value(self, input_selector):
+        return self.page.input_value(input_selector)
+
     def fill_first_number(self, number):
-        self.page.fill('input[type="text"]:nth-of-type(1)', str(number))
+        self.fill_number(number, self.FIRST_NUMBER_INPUT)
 
     def get_first_number(self):
-        return self.page.input_value('input[type="text"]:nth-of-type(1)')
+        return self.get_input_value(self.FIRST_NUMBER_INPUT)
 
     def fill_second_number(self, number):
-        self.page.fill('input[type="text"]:nth-of-type(2)', str(number))
+        self.fill_number(number, self.SECOND_NUMBER_INPUT)
 
     def get_second_number(self):
-        return self.page.input_value('input[type="text"]:nth-of-type(2)')
+        return self.get_input_value(self.SECOND_NUMBER_INPUT)
 
-    def click_add(self):
-        self.page.click('text=Add')
+    def click_button(self, button_name):
+        button_text = self.BUTTON_TEXTS.get(button_name.lower())
+        if button_text:
+            self.page.click(f'text={button_text}')
 
-    def is_add_button_present(self):
-        return self.page.is_visible('text=Add')
-
-    def click_subtract(self):
-        self.page.click('text=Subtract')
-
-    def is_subtract_button_present(self):
-        return self.page.is_visible('text=Add')
-
-    def click_multiply(self):
-        self.page.click('text=Multiply')
-
-    def is_multiply_button_present(self):
-        return self.page.is_visible('text=Multiply')
-
-    def click_divide(self):
-        self.page.click('text=Divide')
-
-    def is_divide_button_present(self):
-        return self.page.is_visible('text=Divide')
-
-    def click_ac(self):
-        self.page.click('text=AC')   
-
-    def is_ac_button_present(self):
-        return self.page.is_visible('text=AC')
+    def is_button_present(self, button_name):
+        button_text = self.BUTTON_TEXTS.get(button_name.lower())
+        if button_text:
+            return self.page.is_visible(f'text={button_text}')
+        return False
 
     def get_result(self):
-        return self.page.text_content('h3')
+        return self.page.text_content(self.RESULT_SELECTOR)
